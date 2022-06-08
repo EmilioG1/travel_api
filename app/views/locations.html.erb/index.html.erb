@@ -1,0 +1,12 @@
+<h1>Locations</h1>
+
+<% if @locations.any? %>
+  <ul>
+    <% @locations.each do |place| %>
+      <li><%= link_to place.city, locations_path(place) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no locations.</p>
+<% end %>
+
