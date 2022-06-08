@@ -1,5 +1,9 @@
 module Response
-  def json_response(object, status = :ok)
-    render json: object, status: status
+  def location_json_response(object, status = :ok)
+    render :json => object.to_json(:include => :reviews ), status: status
+  end
+
+  def review_json_response(object, status = :ok)
+      render json: object, status: status
   end
 end

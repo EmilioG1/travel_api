@@ -8,20 +8,26 @@
 
 class Seed
 
-  def self.begin
-    seed = Seed.new
-    seed.generate_reviews
-  end
+  # def self.begin
+  #   seed = Seed.new
+  #   seed.generate_reviews
+  # end
+  Location.destroy_all
 
-  def generate_reviews
-    20.times do |i|
-      review = Review.create!(
+  # def generate_reviews
+    5.times do |index|
+      Location.create!(city: Faker::Nation.capital_city)
+    end
+
+    30.times do |i|
+      Review.create!(
         author: Faker::Book.author,
-        content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote
+        content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote,
+        location_id: Faker::Number.between(from: 1, to: 5)
       )
-      puts "Review #{i}: Author is #{review.author} and review is '#{review.content}'."
     end
   end
-end
+  puts "Created #{Location.count} Locations and #{Review.count} reviews."
+# end
 
-Seed.begin
+# Seed.begin
